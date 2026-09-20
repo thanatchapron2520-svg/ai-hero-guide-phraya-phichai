@@ -168,6 +168,11 @@ section{padding:56px 0}
 /* HERO SCORE BADGE */
 .hero-badge{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--ink);font-family:'Kanit';font-weight:700;font-size:1.1rem;padding:10px 22px;border-radius:50px;letter-spacing:1px;margin-top:14px;box-shadow:0 4px 16px rgba(201,154,46,.3)}
 
+/* KB FIGURE — ภาพประกอบในเมนูความรู้ */
+.kb-figure{margin:0 0 20px;border:2px solid var(--gold);border-radius:14px;overflow:hidden;background:var(--cream);box-shadow:0 6px 18px rgba(110,20,23,.12)}
+.kb-figure img{display:block;width:100%;height:230px;object-fit:cover;object-position:center}
+.kb-figure figcaption{background:linear-gradient(120deg,var(--crimson),var(--crimson-2));color:var(--cream);font-family:'Kanit';font-size:.86rem;padding:9px 14px;letter-spacing:.3px}
+
 /* ACCESSIBILITY */
 *:focus-visible{outline:3px solid var(--gold-2);outline-offset:2px}
 button,textarea,input{font-family:inherit}
@@ -178,6 +183,7 @@ button,textarea,input{font-family:inherit}
  .principle .flow{display:block;margin-top:6px}
  .path-step{min-width:44px;padding:4px 6px}
  .path-line{width:12px}
+ .kb-figure img{height:180px}
 }
 </style>
 </head>
@@ -355,19 +361,19 @@ const NO_DATA='ยังไม่มีข้อมูลเพียงพอ�
 <script>
 // ===== MENU DATA (6 เส้นทาง) =====
 const MENUS=[
- {n:'01',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>',en:'WHO IS THE HERO?',th:'รู้จักพระยาพิชัยดาบหัก',
+ {n:'01',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>',en:'WHO IS THE HERO?',th:'รู้จักพระยาพิชัยดาบหัก',img:'hero.jpg',cap:'ภาพประกอบ: พระยาพิชัยดาบหัก วีรบุรุษแห่งเมืองพิชัย',
   desc:'รู้จักประวัติ บทบาท และความเชื่อมโยงกับเมืองพิชัยและสมัยธนบุรี',
   body:'<h4>Hero Profile</h4><p>“ก่อนจะรู้จักวีรกรรม เราควรรู้จักบุคคลจากหลักฐานก่อน — สังเกตว่าข้อมูลใดเป็นข้อเท็จจริง และข้อมูลใดเป็นการตีความคุณค่า”</p><p><b>จากฐานความรู้:</b> พระยาพิชัยดาบหักเป็นบุคคลสำคัญในสมัยกรุงธนบุรี มีบทบาททางการทหารร่วมกับสมเด็จพระเจ้าตากสินมหาราช และเชื่อมโยงกับเมืองพิชัยในจังหวัดอุตรดิตถ์</p>',
   kb:['Q1']},
- {n:'02',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 4h10l-2.2 3L16 10H6"/><circle cx="6" cy="21" r="1.2"/></svg>',en:'HERO JOURNEY',th:'สำรวจเหตุการณ์สำคัญ',
+ {n:'02',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 4h10l-2.2 3L16 10H6"/><circle cx="6" cy="21" r="1.2"/></svg>',en:'HERO JOURNEY',th:'สำรวจเหตุการณ์สำคัญ',img:'hero1.jpg',cap:'ภาพประกอบ: เส้นทางวีรกรรมและเหตุการณ์สำคัญในสมัยธนบุรี',
   desc:'ลำดับเหตุการณ์สำคัญ แยกสิ่งที่มีหลักฐานออกจากรายละเอียดที่ควรตรวจเพิ่ม',
   body:'<h4>Hero Timeline</h4><p>“ลองติดตามเหตุการณ์ตามลำดับเวลา แล้วถามตัวเองว่า เหตุการณ์แต่ละช่วงมีหลักฐานประเภทใดรองรับ”</p><p><b>หมุดสำคัญจากฐานความรู้:</b> การรบ พ.ศ. 2316 ที่พระยาพิชัยต่อสู้จนดาบหัก เป็นแกนเหตุการณ์ที่มีหลักฐานรองรับ ส่วนรายละเอียดเชิงเล่าควร cross-check จากหลายแหล่งก่อนเล่าต่อ</p>',
   kb:['Q2']},
- {n:'03',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.6"/></svg>',en:'EXPLORE THE MAP',th:'ตามรอยสถานที่สำคัญ',
+ {n:'03',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.6"/></svg>',en:'EXPLORE THE MAP',th:'ตามรอยสถานที่สำคัญ',img:'museum.jpg',cap:'ภาพประกอบ: แหล่งเรียนรู้และสถานที่เชื่อมโยงกับเมืองพิชัย',
   desc:'ตามรอยเมืองพิชัย อนุสาวรีย์ และแหล่งเรียนรู้ที่เชื่อมโยงความทรงจำท้องถิ่น',
   body:'<h4>Hero Map</h4><p>“ประวัติศาสตร์ไม่ได้อยู่เพียงในหนังสือ ลองสำรวจสถานที่ที่เชื่อมโยงกับเมืองพิชัยและความทรงจำของอุตรดิตถ์”</p><p><b>จากฐานความรู้:</b> • เมืองพิชัย — พื้นที่เชื่อมโยงกับบทบาทของท่าน<br>• อนุสาวรีย์พระยาพิชัยดาบหัก — หน้าศาลากลางจังหวัดอุตรดิตถ์</p>',
   kb:['Q3','Q4']},
- {n:'04',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-3.6-3.6"/><path d="M8.6 11l1.8 1.8L13.4 9"/></svg>',en:'CHECK THE EVIDENCE',th:'ตรวจสอบหลักฐาน',
+ {n:'04',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-3.6-3.6"/><path d="M8.6 11l1.8 1.8L13.4 9"/></svg>',en:'CHECK THE EVIDENCE',th:'ตรวจสอบหลักฐาน',img:'musium.j.jpg',cap:'ภาพประกอบ: แหล่งรวบรวมหลักฐานเพื่อการศึกษาและตรวจสอบ',
   desc:'ฝึกตรวจผู้สร้างข้อมูล วันที่ แหล่งที่มา วัตถุประสงค์ และการตรวจข้ามแหล่ง',
   body:'<h4>Evidence Explorer</h4><p>“ก่อนเชื่อข้อมูล ให้ตรวจว่าใครเป็นผู้สร้างข้อมูล สร้างเมื่อใด มาจากแหล่งใด มีหลักฐานอ้างอิงหรือไม่ และสอดคล้องกับแหล่งอื่นหรือไม่”</p><p><b>5 คำถามตรวจสอบแหล่งข้อมูล:</b> ใครสร้าง? → สร้างเมื่อใด? → มาจากแหล่งใด? → มีหลักฐานอ้างอิงไหม? → สอดคล้องกับแหล่งอื่นไหม (cross-check)</p>',
   kb:['Q6','Q2']},
@@ -459,6 +465,10 @@ function openMenu(i){
  document.getElementById('mNum').textContent='MENU '+m.n+' • '+m.en;
  document.getElementById('mTitle').textContent=m.th;
  var html=m.body;
+ if(m.img){
+  html='<figure class="kb-figure" id="kbFig"><img id="kbFigImg" src="'+m.img+'" alt="'+esc(m.cap||m.th)+'">'+
+   '<figcaption>'+esc(m.cap||'')+'</figcaption></figure>'+html;
+ }
  if(m.kb&&m.kb.length){
   html+='<h4>ข้อมูลจากฐานความรู้ (Knowledge Base)</h4>';
   m.kb.forEach(function(qid){
@@ -475,6 +485,8 @@ function openMenu(i){
  }
  html+='<p style="font-size:.82rem;color:#8a7a4a;margin-top:16px">✧ หลักการ: ASK AI → CHECK EVIDENCE → THINK → THEN CONCLUDE — AI เป็นเครื่องมือช่วยเรียนรู้ ไม่ใช่แหล่งข้อมูลขั้นสุดท้าย</p>';
  document.getElementById('mBody').innerHTML=html;
+ var fimg=document.getElementById('kbFigImg');
+ if(fimg){fimg.addEventListener('error',function(){var f=document.getElementById('kbFig');if(f)f.style.display='none';});}
  overlay.classList.add('on');
  document.getElementById('mBody').scrollTop=0;
 }
