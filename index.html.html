@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#141210">
+<meta name="description" content="AI Hero Guide : ตามรอยพระยาพิชัยดาบหัก — มัคคุเทศก์ดิจิทัลเพื่อการเรียนรู้ประวัติศาสตร์และอัตลักษณ์จังหวัดอุตรดิตถ์">
+<title>AI Hero Guide : ตามรอยพระยาพิชัยดาบหัก</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --gold:#c99a2e; --gold-2:#e9c65a; --crimson:#6e1417; --crimson-2:#8b1a1a;
+ --navy:#1a1410; --navy-2:#2e231a; --ink:#141210; --cream:#f7efdc;
+ --paper:#fffdf6; --slate:#5a5148; --line:#e4d9bc;
+ --ok:#2f7d47; --warn:#b9791a; --rule:#6b5a3c;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Sarabun',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7}
+h1,h2,h3,h4,.kanit{font-family:'Kanit',sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.eng{font-family:'Kanit',sans-serif;letter-spacing:1px}
+
+/* HERO */
+.hero{position:relative;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 55%,var(--crimson) 130%);color:#fff;padding:70px 0 60px;overflow:hidden;text-align:center}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(233,198,90,.22),transparent 45%),radial-gradient(circle at 80% 70%,rgba(139,26,26,.32),transparent 45%),repeating-linear-gradient(45deg,rgba(233,198,90,.05) 0 2px,transparent 2px 22px);pointer-events:none}
+.hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-2),transparent);opacity:.5}
+.hero .badge{display:inline-block;border:1px solid var(--gold-2);color:var(--gold-2);padding:6px 18px;border-radius:40px;font-size:.8rem;letter-spacing:2px;margin-bottom:18px}
+.hero h1{font-size:2.7rem;font-weight:700;line-height:1.2;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.hero h1 .sub{display:block;font-size:1.4rem;font-weight:400;color:var(--gold-2);margin-top:8px}
+.hero p.tag{max-width:640px;margin:16px auto 0;color:#ece2cc;font-size:1.02rem}
+.hero .eyebrow{color:var(--gold-2);font-size:.92rem;letter-spacing:3px;margin:22px 0 26px}
+.btn-start{display:inline-block;background:linear-gradient(90deg,var(--gold),var(--gold-2));color:var(--ink);font-family:'Kanit';font-weight:600;font-size:1.05rem;padding:15px 40px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 8px 24px rgba(212,160,23,.4);transition:.25s;border:none;cursor:pointer}
+.btn-start:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(212,160,23,.55)}
+
+/* PRINCIPLE STRIP */
+.principle{background:var(--ink);color:#fff;text-align:center;padding:16px 20px;font-family:'Kanit';letter-spacing:1px;font-size:.95rem}
+.principle b{color:var(--gold-2)}
+.principle .flow span{color:var(--gold-2);margin:0 6px}
+
+/* SECTIONS */
+section{padding:56px 0}
+.sec-title{text-align:center;margin-bottom:12px}
+.sec-title .en{display:block;color:var(--crimson);font-size:.85rem;letter-spacing:3px;font-weight:600}
+.sec-title h2{font-size:1.9rem;color:var(--navy);font-weight:600}
+.sec-title p{color:var(--slate);max-width:640px;margin:10px auto 0}
+.divider{width:70px;height:4px;background:linear-gradient(90deg,var(--gold),var(--crimson));margin:14px auto 34px;border-radius:4px}
+
+/* MENU GRID */
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.menu-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:26px 24px;cursor:pointer;transition:.25s;position:relative;overflow:hidden}
+.menu-card::before{content:'';position:absolute;top:0;left:0;width:5px;height:100%;background:linear-gradient(var(--gold),var(--crimson))}
+.menu-card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(15,27,61,.13);border-color:var(--gold)}
+.menu-card .num{font-family:'Kanit';font-size:.8rem;color:var(--crimson);font-weight:600;letter-spacing:2px}
+.menu-card .ico{margin-bottom:8px}
+.menu-card .ico svg{display:block}
+.menu-card h3{font-family:'Kanit';color:var(--navy);font-size:1.15rem;margin-bottom:6px}
+.menu-card .th{font-size:.95rem;color:var(--slate);margin-bottom:12px}
+.menu-card .desc{font-size:.9rem;color:var(--slate)}
+.menu-card .open{margin-top:14px;font-family:'Kanit';font-size:.85rem;color:var(--crimson);font-weight:600}
+.menu-card.done{border-color:var(--gold)}
+.menu-card.done::after{content:'✓';position:absolute;top:12px;right:14px;width:24px;height:24px;background:var(--gold);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700}
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(15,27,61,.72);backdrop-filter:blur(3px);display:none;align-items:flex-start;justify-content:center;z-index:100;padding:30px 16px;overflow-y:auto}
+.overlay.on{display:flex}
+.modal{background:var(--paper);max-width:760px;width:100%;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:pop .3s ease}
+@keyframes pop{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-head{background:linear-gradient(120deg,var(--navy),var(--crimson));color:#fff;padding:24px 28px;position:relative}
+.modal-head .num{font-family:'Kanit';color:var(--gold-2);font-size:.82rem;letter-spacing:2px}
+.modal-head h3{font-family:'Kanit';font-size:1.5rem;margin-top:2px}
+.modal-head .close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:1.1rem;cursor:pointer;line-height:1}
+.modal-body{padding:26px 28px;max-height:62vh;overflow-y:auto}
+.modal-body h4{font-family:'Kanit';color:var(--navy);margin:18px 0 8px;font-size:1.05rem}
+.modal-body h4:first-child{margin-top:0}
+.modal-body p{margin-bottom:12px}
+.modal-body ul{margin:0 0 14px 20px}
+.modal-body li{margin-bottom:8px}
+
+/* EVIDENCE TAGS */
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.chip{font-family:'Kanit';font-size:.74rem;padding:4px 12px;border-radius:30px;font-weight:500;letter-spacing:.5px}
+.chip.src{background:#eef2fb;color:var(--rule);border:1px solid #ccd6ee}
+.chip.ok{background:#e6f5ec;color:var(--ok);border:1px solid #b6e3c6}
+.chip.warn{background:#fdf1de;color:var(--warn);border:1px solid #f2d9a8}
+.chip.rule{background:#f0eefb;color:#5b3b9c;border:1px solid #d9d0f2}
+.chip.upd{background:#f4f4f4;color:#666;border:1px solid #ddd}
+.evbox{background:#fbf7ec;border:1px dashed var(--line);border-radius:12px;padding:14px 16px;margin:14px 0;font-size:.9rem}
+.evbox .src{color:var(--rule);font-family:'Kanit';font-size:.82rem}
+
+/* ASK GUIDE */
+.ask-wrap{background:linear-gradient(135deg,var(--navy),var(--navy-2));border-radius:20px;padding:30px;color:#fff}
+.chat-log{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:18px;min-height:120px;max-height:340px;overflow-y:auto;margin-bottom:16px}
+.msg{margin-bottom:14px;display:flex;gap:10px}
+.msg .av{width:34px;height:34px;border-radius:50%;flex:0 0 34px;display:flex;align-items:center;justify-content:center;font-size:1.05rem}
+.msg.bot .av{background:var(--gold)}
+.msg.user{flex-direction:row-reverse}
+.msg.user .av{background:var(--crimson-2)}
+.bubble{background:rgba(255,255,255,.1);padding:12px 15px;border-radius:12px;font-size:.94rem;max-width:82%}
+.msg.user .bubble{background:rgba(212,160,23,.22)}
+.bubble .mini{display:block;margin-top:8px;font-size:.72rem;color:var(--gold-2);font-family:'Kanit'}
+.chat-in{display:flex;gap:10px}
+.chat-in input{flex:1;padding:13px 16px;border-radius:40px;border:none;font-family:'Sarabun';font-size:.95rem;outline:none}
+.chat-in button{background:var(--gold);border:none;color:var(--ink);font-family:'Kanit';font-weight:600;padding:0 24px;border-radius:40px;cursor:pointer}
+.suggests{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.suggests button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#eee;font-size:.82rem;padding:7px 14px;border-radius:30px;cursor:pointer;font-family:'Sarabun'}
+.suggests button:hover{background:var(--gold);color:var(--ink)}
+
+/* TRUST CHECK */
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.trust-col{padding:0}
+.trust-col .th{padding:16px;font-family:'Kanit';font-weight:600;color:#fff;text-align:center}
+.trust-col.a .th{background:var(--navy)}
+.trust-col.b .th{background:var(--crimson)}
+.trust-col .item{padding:13px 18px;border-top:1px solid var(--line);background:var(--paper);font-size:.92rem}
+.trust-col .item::before{content:'✓ ';color:var(--gold);font-weight:700}
+
+/* QUIZ */
+.quiz-box{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:30px}
+.q-progress{height:8px;background:#eee;border-radius:8px;overflow:hidden;margin-bottom:20px}
+.q-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--crimson));width:0;transition:.3s}
+.q-count{font-family:'Kanit';color:var(--crimson);font-size:.85rem;letter-spacing:1px;margin-bottom:6px}
+.q-text{font-family:'Kanit';font-size:1.2rem;color:var(--navy);margin-bottom:18px}
+.q-opts{display:grid;gap:10px}
+.q-opt{text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:15px 18px;min-height:52px;cursor:pointer;font-family:'Sarabun';font-size:1rem;transition:.15s}
+.q-opt:hover{border-color:var(--gold);background:#fffdf3}
+.q-opt.correct{border-color:var(--ok);background:#e6f5ec}
+.q-opt.wrong{border-color:var(--crimson);background:#fbe9e9}
+.q-opt:disabled{cursor:default}
+.q-feedback{margin-top:16px;font-family:'Kanit';font-size:.95rem;min-height:24px}
+.q-nav{margin-top:20px;text-align:right}
+.q-nav button{background:var(--navy);color:#fff;border:none;font-family:'Kanit';padding:11px 26px;border-radius:40px;cursor:pointer;font-size:.95rem}
+.q-nav button:disabled{opacity:.4;cursor:not-allowed}
+.q-result{text-align:center}
+.q-result .score{font-family:'Kanit';font-size:3rem;color:var(--crimson);font-weight:700}
+.q-result h3{font-family:'Kanit';color:var(--navy);margin:6px 0 10px}
+
+/* REFLECTION */
+.reflect{background:linear-gradient(135deg,#fff6df,#faeecb);border:1px solid var(--line);border-radius:18px;padding:30px}
+.reflect textarea{width:100%;min-height:110px;border:1px solid var(--line);border-radius:12px;padding:14px;font-family:'Sarabun';font-size:.95rem;resize:vertical;margin-top:10px}
+
+/* CLOSING */
+.closing{background:var(--ink);color:#fff;text-align:center;padding:50px 20px}
+.closing .big{font-family:'Kanit';font-size:1.5rem;color:var(--gold-2);letter-spacing:1px}
+.closing .th{color:#c9b58a;margin-top:8px}
+.footer{background:#0d0b08;color:#9a8c6e;text-align:center;padding:22px;font-size:.82rem}
+
+/* THAI ORNAMENT — ลายไทยอย่างเรียบหรู (ไม่รบกวนการอ่าน) */
+.thai-border-top{height:6px;background:repeating-linear-gradient(90deg,transparent 0 8px,var(--gold-2) 8px 10px,transparent 10px 18px);opacity:.35}
+.thai-border-bot{height:4px;background:repeating-linear-gradient(90deg,transparent 0 6px,var(--gold) 6px 8px,transparent 8px 14px);opacity:.25}
+.thai-corner{position:relative}
+.thai-corner::after{content:'';position:absolute;top:6px;left:6px;right:6px;bottom:6px;border:1px solid var(--gold-2);opacity:.08;border-radius:inherit;pointer-events:none}
+
+/* LEARNING PATH STEPPER */
+.path-bar{display:flex;justify-content:center;gap:0;margin-bottom:32px;flex-wrap:wrap}
+.path-step{display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:.2s;padding:6px 10px;border-radius:12px;min-width:56px}
+.path-step:hover{background:rgba(201,154,46,.1)}
+.path-step.done .path-dot{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,154,46,.18)}
+.path-step.done .path-num{color:var(--gold)}
+.path-step.active .path-dot{border-color:var(--crimson);background:var(--crimson-2);box-shadow:0 0 0 4px rgba(139,26,26,.15)}
+.path-step.active .path-num{color:var(--crimson-2)}
+.path-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);background:var(--paper);display:flex;align-items:center;justify-content:center;transition:.2s}
+.path-num{font-family:'Kanit';font-size:.7rem;color:var(--slate);margin-top:4px}
+.path-line{width:24px;height:2px;background:var(--line);align-self:center;margin-top:-12px;margin-left:-4px;margin-right:-4px;flex:0 0 24px}
+
+/* GOLD LINE ICONS */
+.menu-icon{width:42px;height:42px;margin-bottom:8px}
+
+/* HERO SCORE BADGE */
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:var(--ink);font-family:'Kanit';font-weight:700;font-size:1.1rem;padding:10px 22px;border-radius:50px;letter-spacing:1px;margin-top:14px;box-shadow:0 4px 16px rgba(201,154,46,.3)}
+
+/* ACCESSIBILITY */
+*:focus-visible{outline:3px solid var(--gold-2);outline-offset:2px}
+button,textarea,input{font-family:inherit}
+
+@media(max-width:600px){
+ .hero h1{font-size:2rem}.hero h1 .sub{font-size:1.1rem}
+ .trust-grid{grid-template-columns:1fr}
+ .principle .flow{display:block;margin-top:6px}
+ .path-step{min-width:44px;padding:4px 6px}
+ .path-line{width:12px}
+}
+</style>
+</head>
+<body>
+<div class="thai-border-top"></div>
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="badge eng">DIGITAL LEARNING GUIDE • อุตรดิตถ์</span>
+    <h1>AI HERO GUIDE
+      <span class="sub">ตามรอยพระยาพิชัยดาบหัก</span>
+    </h1>
+    <p class="tag">มัคคุเทศก์ดิจิทัลเพื่อการเรียนรู้ประวัติศาสตร์และอัตลักษณ์จังหวัดอุตรดิตถ์ สำหรับนักเรียนระดับมัธยมศึกษา</p>
+    <div class="eyebrow eng">DISCOVER HISTORY • EXPLORE IDENTITY • INSPIRE THE FUTURE</div>
+    <a href="#menu" class="btn-start eng">START YOUR HERO JOURNEY →</a>
+  </div>
+</header>
+<div class="thai-border-bot"></div>
+<div class="principle">
+  <span class="flow"><b>ASK AI</b><span>→</span><b>CHECK EVIDENCE</b><span>→</span><b>THINK</b><span>→</span><b>THEN CONCLUDE</b></span>
+  &nbsp;&nbsp;ถาม AI → ตรวจหลักฐาน → คิดวิเคราะห์ → จึงสรุป
+</div>
+
+<!-- WELCOME / ASK GUIDE -->
+<section id="ask">
+  <div class="wrap">
+    <div class="ask-wrap">
+      <div class="sec-title" style="margin-bottom:18px">
+        <span class="en" style="color:var(--gold-2)">ASK THE GUIDE</span>
+        <h2 style="color:#fff">ถามมัคคุเทศก์ AI Hero Guide</h2>
+      </div>
+      <div class="chat-log" id="chatLog"></div>
+      <div class="chat-in">
+        <input id="chatInput" type="text" placeholder="พิมพ์คำถามของคุณ... เช่น ทำไมจึงเรียกว่าดาบหัก?">
+        <button id="chatSend" class="eng">ถาม</button>
+      </div>
+      <div class="suggests" id="suggests"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-title">
+      <span class="en">6 LEARNING ROUTES</span>
+      <h2>เส้นทางการเรียนรู้ 6 เมนู</h2>
+      <p>เลือกเส้นทางที่สนใจ AI Guide จะพาคุณสำรวจทีละขั้น พร้อมแหล่งอ้างอิงและสถานะหลักฐาน</p>
+    </div>
+    <div class="divider"></div>
+    <p style="text-align:center;font-family:'Kanit';color:var(--crimson);font-size:.9rem;margin:-14px 0 14px;letter-spacing:.5px">ความคืบหน้าการเรียนรู้: <span id="pathCount">0/6</span></p>
+    <div class="path-bar" id="pathBar"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+<!-- TRUST CHECK -->
+<section id="trust" style="background:#f7f1df">
+  <div class="wrap">
+    <div class="sec-title">
+      <span class="en">AI TRUST CHECK</span>
+      <h2>AI ช่วยได้ • มนุษย์ต้องตรวจ</h2>
+      <p>รู้ขอบเขตของ AI เพื่อใช้งานอย่างรู้เท่าทัน</p>
+    </div>
+    <div class="divider"></div>
+    <div class="trust-grid">
+      <div class="trust-col a">
+        <div class="th">AI CAN HELP — AI ช่วยได้</div>
+        <div class="item">เล่าและสรุปข้อมูล</div>
+        <div class="item">สร้างเสียง/สคริปต์บรรยาย</div>
+        <div class="item">ช่วยตั้งคำถาม</div>
+        <div class="item">แนะนำเส้นทางเรียนรู้</div>
+        <div class="item">ช่วยจัดรูปแบบเนื้อหา</div>
+      </div>
+      <div class="trust-col b">
+        <div class="th">HUMAN MUST CHECK — มนุษย์ต้องตรวจ</div>
+        <div class="item">ข้อเท็จจริง</div>
+        <div class="item">หลักฐานและแหล่งอ้างอิง</div>
+        <div class="item">บริบททางประวัติศาสตร์</div>
+        <div class="item">ความสอดคล้องระหว่างหลายแหล่ง</div>
+        <div class="item">ความเหมาะสม ลิขสิทธิ์ และจริยธรรม</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="sec-title">
+      <span class="en">HERO QUIZ</span>
+      <h2>ทดสอบความเข้าใจ</h2>
+      <p>10 คำถามเรื่องบุคคล เหตุการณ์ หลักฐาน การตรวจสอบข้อมูล และอัตลักษณ์</p>
+    </div>
+    <div class="divider"></div>
+    <div class="quiz-box" id="quizBox"></div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section id="reflect" style="background:#f7f1df;padding-top:20px">
+  <div class="wrap">
+    <div class="reflect">
+      <div class="sec-title" style="margin-bottom:6px">
+        <span class="en">PAST → PRESENT • REFLECTION</span>
+        <h2>คิดต่อ...จากอดีตสู่ปัจจุบัน</h2>
+      </div>
+      <p style="text-align:center;color:var(--slate)">คุณค่าจากเรื่องราวของพระยาพิชัยดาบหัก — เช่น ความกล้าหาญ ความเสียสละ ความรับผิดชอบต่อส่วนรวม — นำมาปรับใช้ในชีวิตของคนรุ่นใหม่ได้อย่างไร?</p>
+      <textarea id="reflectText" placeholder="เขียนความคิดของคุณที่นี่..."></textarea>
+      <p style="font-size:.82rem;color:#8a7a4a;margin-top:8px">✧ สิ่งที่คุณเขียนจะอยู่ในเครื่องของคุณเท่านั้น ไม่ถูกส่งออกไปที่ใด</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="big eng">AI GUIDES • EVIDENCE CONFIRMS • HUMAN DECIDES</div>
+  <div class="th">AI ช่วยนำทาง • หลักฐานช่วยยืนยัน • มนุษย์เป็นผู้คิดและตัดสินใจ</div>
+</div>
+<div class="footer">
+  AI Hero Guide : ตามรอยพระยาพิชัยดาบหัก &nbsp;|&nbsp; มัคคุเทศก์ดิจิทัลเพื่อการเรียนรู้ประวัติศาสตร์และอัตลักษณ์จังหวัดอุตรดิตถ์<br>
+  <span style="font-size:.76rem">ตรวจสอบฐานความรู้ล่าสุด: 20 กันยายน 2569 (20 SEP 2026) • ข้อมูลอ้างอิงจากกรมศิลปากร • การท่องเที่ยวแห่งประเทศไทย (TAT)</span>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="num" id="mNum"></span>
+      <h3 id="mTitle"></h3>
+      <button class="close" id="mClose">✕</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+<!-- ANCHOR -->
+<script>
+// ===== KNOWLEDGE BASE (ใช้เฉพาะข้อมูลจากเอกสารที่แนบ) =====
+const KB = [
+ {id:'Q1', keys:['ยุค','สมัย','ธนบุรี','ตากสิน','เกี่ยวข้องกับยุคใด'],
+  q:'พระยาพิชัยดาบหักเกี่ยวข้องกับยุคใด?',
+  a:'พระยาพิชัยดาบหักเป็นบุคคลสำคัญในสมัยกรุงธนบุรี และมีบทบาททางการทหารร่วมกับสมเด็จพระเจ้าตากสินมหาราช',
+  src:'กรมศิลปากร: “ประวัติพระยาพิชัยดาบหัก ต้นสกุลวิชัยขัทคะ”; พระราชพงศาวดารกรุงธนบุรี',
+  ev:'ok', evtext:'VERIFIED — มีแหล่งข้อมูลทางประวัติศาสตร์รองรับ',
+  think:'ลองสังเกตว่า “สมัยธนบุรี” มีความสำคัญต่อบ้านเมืองอย่างไร?'},
+ {id:'Q2', keys:['ดาบหัก','ทำไมเรียก','ชื่อ','2316','รบ'],
+  q:'ทำไมจึงเรียกว่า “พระยาพิชัยดาบหัก”?',
+  a:'แหล่งข้อมูลของกรมศิลปากรกล่าวถึงการรบ พ.ศ. 2316 ซึ่งพระยาพิชัยต่อสู้จนดาบหัก และชื่อ “พระยาพิชัยดาบหัก” ถูกใช้สืบต่อมา ควรศึกษารายละเอียดจากเอกสารต้นทางและเปรียบเทียบหลายแหล่งเมื่ออธิบายเหตุการณ์อย่างละเอียด',
+  src:'กรมศิลปากร; เอกสารที่อ้างประชุมพงศาวดารและหนังสือไทยรบพม่า',
+  ev:'warn', evtext:'VERIFIED ที่แกนเหตุการณ์ / รายละเอียดเชิงเล่าเรื่องควร CROSS-CHECK',
+  think:'เหตุการณ์แกนมีหลักฐาน แต่รายละเอียดการเล่าเรื่อง ควรเปรียบเทียบกี่แหล่งก่อนเล่าต่อ?'},
+ {id:'Q3', keys:['เมืองพิชัย','พิชัยสำคัญ','ป้องกันเมือง','สถานที่'],
+  q:'เมืองพิชัยสำคัญอย่างไรต่อเรื่องนี้?',
+  a:'เมืองพิชัยเป็นพื้นที่สำคัญที่เชื่อมโยงกับบทบาทของพระยาพิชัย และเหตุการณ์การป้องกันเมืองในสมัยธนบุรี จึงเป็นพื้นที่หลักในการศึกษาความสัมพันธ์ระหว่างบุคคล เหตุการณ์ และความทรงจำท้องถิ่น',
+  src:'การท่องเที่ยวแห่งประเทศไทย; เอกสารกรมศิลปากร',
+  ev:'ok', evtext:'VERIFIED', think:'สถานที่ช่วยสืบทอดเรื่องราวสู่คนรุ่นต่อไปได้อย่างไร?'},
+ {id:'Q4', keys:['อนุสาวรีย์','อยู่ที่ไหน','ศาลากลาง','ตั้งอยู่'],
+  q:'อนุสาวรีย์พระยาพิชัยดาบหักอยู่ที่ใด?',
+  a:'การท่องเที่ยวแห่งประเทศไทยระบุว่า อนุสาวรีย์พระยาพิชัยดาบหักตั้งอยู่หน้าศาลากลางจังหวัดอุตรดิตถ์ สร้างขึ้นเพื่อเชิดชูเกียรติด้านความกล้าหาญ รักชาติ และเสียสละ',
+  src:'การท่องเที่ยวแห่งประเทศไทย (TAT)',
+  ev:'ok', evtext:'VERIFIED', think:'“การมีอนุสาวรีย์” เป็นข้อเท็จจริง แต่ “ความกล้าหาญ” เป็นอะไร?'},
+ {id:'Q5', keys:['คุณค่า','อัตลักษณ์','กล้าหาญ','เสียสละ','เด็ดเดี่ยว','ภาคภูมิใจ'],
+  q:'คุณค่าใดเชื่อมโยงกับพระยาพิชัยดาบหัก?',
+  a:'จากการรำลึกและการนำเสนอเรื่องราวในแหล่งเรียนรู้ สามารถวิเคราะห์คุณค่าที่เชื่อมโยงได้ เช่น ความกล้าหาญ ความเสียสละ ความเด็ดเดี่ยว และความภาคภูมิใจในท้องถิ่น อย่างไรก็ตาม ส่วนนี้เป็น“การตีความคุณค่า”จากหลักฐานและความทรงจำทางสังคม ไม่ใช่ข้อเท็จจริงเชิงวัตถุที่พิสูจน์ได้โดยลำพัง',
+  src:'TAT + การวิเคราะห์ของโครงงานจากหลักฐานที่ตรวจสอบแล้ว',
+  ev:'warn', evtext:'INTERPRETIVE — เป็นการตีความคุณค่า ต้องอธิบายหลักฐานที่ใช้ประกอบ',
+  think:'คุณคิดว่าความกล้าหาญเชื่อมโยงกับเหตุการณ์ใดมากที่สุด?'},
+ {id:'Q6', keys:['ai ตอบได้ทุก','เชื่อ ai','ai น่าเชื่อ','กติกา'],
+  q:'AI ตอบได้ทุกเรื่องหรือไม่?',
+  a:'ไม่ได้ AI Hero Guide ตอบจาก Knowledge Base ที่กำหนดเท่านั้น หากไม่มีข้อมูลเพียงพอ จะแจ้งว่ายังยืนยันไม่ได้ และแนะนำให้ตรวจสอบเอกสารหรือแหล่งข้อมูลเพิ่มเติมเสมอ',
+  src:'กติกาการใช้งาน AI Hero Guide ของโครงงาน',
+  ev:'rule', evtext:'SYSTEM RULE', think:'ทำไมการ“รู้ว่าเราไม่รู้อะไร”จึงสำคัญพอๆกับการ“รู้คำตอบ”?'}
+];
+const NO_DATA='ยังไม่มีข้อมูลเพียงพอที่จะยืนยันจากฐานความรู้ชุดนี้ แนะนำให้ตรวจสอบกับเอกสารกรมศิลปากรหรือแหล่งข้อมูลเพิ่มเติม';
+</script>
+<script>
+// ===== MENU DATA (6 เส้นทาง) =====
+const MENUS=[
+ {n:'01',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>',en:'WHO IS THE HERO?',th:'รู้จักพระยาพิชัยดาบหัก',
+  desc:'รู้จักประวัติ บทบาท และความเชื่อมโยงกับเมืองพิชัยและสมัยธนบุรี',
+  body:'<h4>Hero Profile</h4><p>“ก่อนจะรู้จักวีรกรรม เราควรรู้จักบุคคลจากหลักฐานก่อน — สังเกตว่าข้อมูลใดเป็นข้อเท็จจริง และข้อมูลใดเป็นการตีความคุณค่า”</p><p><b>จากฐานความรู้:</b> พระยาพิชัยดาบหักเป็นบุคคลสำคัญในสมัยกรุงธนบุรี มีบทบาททางการทหารร่วมกับสมเด็จพระเจ้าตากสินมหาราช และเชื่อมโยงกับเมืองพิชัยในจังหวัดอุตรดิตถ์</p>',
+  kb:['Q1']},
+ {n:'02',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 4h10l-2.2 3L16 10H6"/><circle cx="6" cy="21" r="1.2"/></svg>',en:'HERO JOURNEY',th:'สำรวจเหตุการณ์สำคัญ',
+  desc:'ลำดับเหตุการณ์สำคัญ แยกสิ่งที่มีหลักฐานออกจากรายละเอียดที่ควรตรวจเพิ่ม',
+  body:'<h4>Hero Timeline</h4><p>“ลองติดตามเหตุการณ์ตามลำดับเวลา แล้วถามตัวเองว่า เหตุการณ์แต่ละช่วงมีหลักฐานประเภทใดรองรับ”</p><p><b>หมุดสำคัญจากฐานความรู้:</b> การรบ พ.ศ. 2316 ที่พระยาพิชัยต่อสู้จนดาบหัก เป็นแกนเหตุการณ์ที่มีหลักฐานรองรับ ส่วนรายละเอียดเชิงเล่าควร cross-check จากหลายแหล่งก่อนเล่าต่อ</p>',
+  kb:['Q2']},
+ {n:'03',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.6"/></svg>',en:'EXPLORE THE MAP',th:'ตามรอยสถานที่สำคัญ',
+  desc:'ตามรอยเมืองพิชัย อนุสาวรีย์ และแหล่งเรียนรู้ที่เชื่อมโยงความทรงจำท้องถิ่น',
+  body:'<h4>Hero Map</h4><p>“ประวัติศาสตร์ไม่ได้อยู่เพียงในหนังสือ ลองสำรวจสถานที่ที่เชื่อมโยงกับเมืองพิชัยและความทรงจำของอุตรดิตถ์”</p><p><b>จากฐานความรู้:</b> • เมืองพิชัย — พื้นที่เชื่อมโยงกับบทบาทของท่าน<br>• อนุสาวรีย์พระยาพิชัยดาบหัก — หน้าศาลากลางจังหวัดอุตรดิตถ์</p>',
+  kb:['Q3','Q4']},
+ {n:'04',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-3.6-3.6"/><path d="M8.6 11l1.8 1.8L13.4 9"/></svg>',en:'CHECK THE EVIDENCE',th:'ตรวจสอบหลักฐาน',
+  desc:'ฝึกตรวจผู้สร้างข้อมูล วันที่ แหล่งที่มา วัตถุประสงค์ และการตรวจข้ามแหล่ง',
+  body:'<h4>Evidence Explorer</h4><p>“ก่อนเชื่อข้อมูล ให้ตรวจว่าใครเป็นผู้สร้างข้อมูล สร้างเมื่อใด มาจากแหล่งใด มีหลักฐานอ้างอิงหรือไม่ และสอดคล้องกับแหล่งอื่นหรือไม่”</p><p><b>5 คำถามตรวจสอบแหล่งข้อมูล:</b> ใครสร้าง? → สร้างเมื่อใด? → มาจากแหล่งใด? → มีหลักฐานอ้างอิงไหม? → สอดคล้องกับแหล่งอื่นไหม (cross-check)</p>',
+  kb:['Q6','Q2']},
+ {n:'05',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a8 8 0 0 0-8 8v3"/><path d="M12 4a8 8 0 0 1 8 8"/><path d="M12 8a4 4 0 0 0-4 4v4"/><path d="M12 8a4 4 0 0 1 4 4v2"/><path d="M12 12v5"/></svg>',en:'DECODE IDENTITY',th:'วิเคราะห์คุณค่าและอัตลักษณ์',
+  desc:'วิเคราะห์คุณค่าที่สังคมเชื่อมโยงกับวีรกรรม เช่น ความกล้าหาญ เสียสละ ภาคภูมิใจท้องถิ่น',
+  body:'<h4>Identity DNA</h4><p>“เมื่อเรามีหลักฐานแล้ว จึงค่อยวิเคราะห์คุณค่าที่เรื่องราวสะท้อน โดยต้องอธิบายว่าคุณค่านั้นเชื่อมโยงกับเหตุการณ์ใด”</p><p style="background:#fdf1de;padding:10px 14px;border-radius:8px;font-size:.88rem">⚠️ ส่วนนี้เป็น <b>การตีความคุณค่า</b> จากเหตุการณ์/ความทรงจำ ไม่ใช่ข้อเท็จจริงเชิงวัตถุที่พิสูจน์ได้โดยลำพัง</p>',
+  kb:['Q5']},
+ {n:'06',ico:'<svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4a5 5 0 0 1-10 0V4z"/><path d="M7 6H4v1a3 3 0 0 0 3 3"/><path d="M17 6h3v1a3 3 0 0 1-3 3"/><path d="M9.5 20h5M12 13v7"/></svg>',en:'HERO QUIZ',th:'ทดสอบความเข้าใจ',
+  desc:'ทดสอบความเข้าใจเรื่องบุคคล เหตุการณ์ หลักฐาน การตรวจสอบข้อมูล และอัตลักษณ์',
+  body:'<h4>Hero Quiz</h4><p>ทดสอบความเข้าใจ 10 ข้อ เลื่อนลงไปที่ส่วน HERO QUIZ ด้านล่างของหน้านี้ได้เลย</p><p style="text-align:center;margin-top:16px"><a href="#quiz" class="btn-start" style="font-size:.92rem;padding:11px 26px" onclick-safe="1">ไปทำแบบทดสอบ →</a></p>',
+  kb:[]}
+];
+</script>
+<script>
+// ===== QUIZ DATA (10 ข้อ) =====
+const QUIZ=[
+ {q:'พระยาพิชัยดาบหักเป็นบุคคลสำคัญในสมัยใด?',o:['สุโขทัย','อยุธยาตอนต้น','ธนบุรี','รัตนโกสินทร์ตอนปลาย'],c:2,
+  e:'พระยาพิชัยดาบหักเป็นบุคคลสำคัญในสมัยกรุงธนบุรี (VERIFIED)'},
+ {q:'ก่อนนำข้อมูลจาก AI ไปใช้ ควรทำสิ่งใด?',o:['แชร์ทันที','ตรวจหลักฐานและแหล่งอ้างอิง','เชื่อเพราะ AI ตอบเร็ว','ตัดชื่อแหล่งข้อมูลออก'],c:1,
+  e:'ต้องตรวจหลักฐานและแหล่งอ้างอิงก่อนเสมอ ตามหลัก ASK AI→CHECK EVIDENCE'},
+ {q:'ข้อใดเป็นคำถามตรวจสอบแหล่งข้อมูลที่เหมาะสม?',o:['สีสวยหรือไม่','ใครเป็นผู้สร้างข้อมูล','คนแชร์เยอะหรือไม่','ข้อความยาวหรือไม่'],c:1,
+  e:'การถามว่า“ใครเป็นผู้สร้างข้อมูล”ช่วยประเมินความน่าเชื่อถือ'},
+ {q:'Evidence Explorer มีหน้าที่สำคัญที่สุดข้อใด?',o:['ตกแต่งงาน','ตรวจสอบและเปรียบเทียบหลักฐาน','เพิ่มจำนวนภาพ','ทำให้เรื่องน่าตื่นเต้น'],c:1,
+  e:'Evidence Explorer เน้นการตรวจสอบและเปรียบเทียบหลักฐาน'},
+ {q:'อนุสาวรีย์ที่ TAT กล่าวถึงตั้งอยู่บริเวณใด?',o:['หน้าศาลากลางจังหวัดอุตรดิตถ์','กรุงเทพฯ','เชียงใหม่','อยุธยา'],c:0,
+  e:'อนุสาวรีย์ตั้งอยู่หน้าศาลากลางจังหวัดอุตรดิตถ์ (VERIFIED)'},
+ {q:'ข้อใดเป็น“การตีความคุณค่า”มากกว่าข้อเท็จจริงเชิงเหตุการณ์?',o:['มีอนุสาวรีย์ในอุตรดิตถ์','เหตุการณ์เกิดในสมัยธนบุรี','ความกล้าหาญเป็นคุณค่าที่สังคมเชื่อมโยง','เมืองพิชัยเป็นพื้นที่เกี่ยวข้อง'],c:2,
+  e:'“ความกล้าหาญ”เป็นคุณค่าที่สังคมตีความ (INTERPRETIVE) ต่างจากข้อเท็จจริง'},
+ {q:'หาก AI ไม่มีข้อมูลเพียงพอ ควรตอบอย่างไร?',o:['เดาให้ใกล้เคียง','สร้างคำตอบใหม่','แจ้งว่ายังไม่มีข้อมูลเพียงพอที่จะยืนยัน','เปลี่ยนคำถาม'],c:2,
+  e:'ต้องแจ้งว่า“ยังไม่มีข้อมูลเพียงพอที่จะยืนยัน” ห้ามเดาหรือสร้างข้อมูล'},
+ {q:'Cross-check หมายถึงอะไร?',o:['ตรวจหลายแหล่งและเปรียบความสอดคล้อง','อ่านแหล่งเดียวซ้ำ','เลือกแหล่งที่สวยที่สุด','ใช้ AI แทนเอกสาร'],c:0,
+  e:'Cross-check คือการตรวจหลายแหล่งเพื่อเปรียบความสอดคล้อง'},
+ {q:'Past→Present มีเป้าหมายใด?',o:['จำปี พ.ศ. อย่างเดียว','เชื่อมคุณค่าจากประวัติศาสตร์กับการเรียนรู้ปัจจุบัน','ตัดหลักฐานออก','สร้างเรื่องใหม่'],c:1,
+  e:'Past→Present เชื่อมคุณค่าจากอดีตสู่การเรียนรู้ในปัจจุบัน'},
+ {q:'หลักคิดของ AI Hero Guide คือข้อใด?',o:['ASK AI→BELIEVE','ASK AI→CHECK EVIDENCE→THINK→THEN CONCLUDE','SEARCH→COPY→POST','AI→FINAL ANSWER'],c:1,
+  e:'หลักคิดคือ ASK AI→CHECK EVIDENCE→THINK→THEN CONCLUDE'}
+];
+</script>
+<script>
+// ===== HELPERS =====
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function chipHTML(k){var m={src:'chip src',ok:'chip ok',warn:'chip warn',rule:'chip rule'};return m[k]||'chip';}
+
+// ===== RENDER MENUS + LEARNING PATH =====
+var grid=document.getElementById('menuGrid');
+var pathBar=document.getElementById('pathBar');
+var visited={};
+MENUS.forEach(function(m,i){
+ var card=document.createElement('div');
+ card.className='menu-card thai-corner';
+ card.id='menu-card-'+i;
+ card.setAttribute('role','button');
+ card.setAttribute('tabindex','0');
+ card.setAttribute('aria-label','เมนู '+m.n+' '+m.en+' '+m.th);
+ card.innerHTML='<div class="num">MENU '+m.n+'</div><div class="ico">'+m.ico+'</div>'+
+  '<h3>'+m.en+'</h3><div class="th">'+m.th+'</div>'+
+  '<div class="desc">'+m.desc+'</div><div class="open">เปิดเส้นทางนี้ →</div>';
+ card.addEventListener('click',function(){openMenu(i);});
+ card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openMenu(i);}});
+ grid.appendChild(card);
+ // path step
+ if(i>0){var ln=document.createElement('div');ln.className='path-line';pathBar.appendChild(ln);}
+ var step=document.createElement('div');
+ step.className='path-step';step.id='path-step-'+i;
+ step.setAttribute('role','button');step.setAttribute('tabindex','0');
+ step.setAttribute('aria-label','ไปเมนู '+m.n);
+ step.innerHTML='<div class="path-dot"></div><div class="path-num">'+m.n+'</div>';
+ step.addEventListener('click',function(){openMenu(i);});
+ step.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openMenu(i);}});
+ pathBar.appendChild(step);
+});
+function updatePath(active){
+ var count=Object.keys(visited).length;
+ document.getElementById('pathCount').textContent=count+'/6';
+ MENUS.forEach(function(m,i){
+  var st=document.getElementById('path-step-'+i);
+  st.classList.toggle('done',!!visited[i]);
+  st.classList.toggle('active',i===active);
+  var cd=document.getElementById('menu-card-'+i);
+  if(cd)cd.classList.toggle('done',!!visited[i]);
+ });
+}
+
+// ===== MODAL =====
+var overlay=document.getElementById('overlay');
+function openMenu(i){
+ visited[i]=true;updatePath(i);
+ var m=MENUS[i];
+ document.getElementById('mNum').textContent='MENU '+m.n+' • '+m.en;
+ document.getElementById('mTitle').textContent=m.th;
+ var html=m.body;
+ if(m.kb&&m.kb.length){
+  html+='<h4>ข้อมูลจากฐานความรู้ (Knowledge Base)</h4>';
+  m.kb.forEach(function(qid){
+   var item=KB.find(function(x){return x.id===qid;});
+   if(item){
+    html+='<div class="evbox"><b>'+esc(item.q)+'</b><p style="margin-top:6px">'+esc(item.a)+'</p>'+
+     '<div class="tag-row"><span class="'+chipHTML('src')+'">SOURCE</span>'+
+     '<span class="'+chipHTML(item.ev)+'">EVIDENCE: '+esc(item.evtext)+'</span>'+
+     '<span class="chip upd">ตรวจล่าสุด 20 ก.ย. 2569</span></div>'+
+     '<div class="src" style="margin-top:6px">SOURCE: '+esc(item.src)+'</div>'+
+     '<p style="margin-top:8px;color:var(--crimson)"><b>ชวนคิด:</b> '+esc(item.think)+'</p></div>';
+   }
+  });
+ }
+ html+='<p style="font-size:.82rem;color:#8a7a4a;margin-top:16px">✧ หลักการ: ASK AI → CHECK EVIDENCE → THINK → THEN CONCLUDE — AI เป็นเครื่องมือช่วยเรียนรู้ ไม่ใช่แหล่งข้อมูลขั้นสุดท้าย</p>';
+ document.getElementById('mBody').innerHTML=html;
+ overlay.classList.add('on');
+ document.getElementById('mBody').scrollTop=0;
+}
+document.getElementById('mClose').addEventListener('click',function(){overlay.classList.remove('on');});
+overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.classList.remove('on');});
+
+// ===== ASK THE GUIDE (Q&A จาก KB เท่านั้น) =====
+var log=document.getElementById('chatLog');
+function addMsg(who,html,mini){
+ var d=document.createElement('div');
+ d.className='msg '+who;
+ var av=who==='bot'?'🧭':'🙋';
+ var b='<div class="bubble">'+html+(mini?'<span class="mini">'+mini+'</span>':'')+'</div>';
+ d.innerHTML='<div class="av">'+av+'</div>'+b;
+ log.appendChild(d);
+ log.scrollTop=log.scrollHeight;
+}
+function matchKB(text){
+ var t=text.toLowerCase();
+ var best=null,score=0;
+ KB.forEach(function(item){
+  var s=0;
+  item.keys.forEach(function(k){if(t.indexOf(k.toLowerCase())>-1)s+=2;});
+  if(t.indexOf(item.q.toLowerCase().slice(0,6))>-1)s+=1;
+  if(s>score){score=s;best=item;}
+ });
+ return score>0?best:null;
+}
+function ask(text){
+ if(!text.trim())return;
+ addMsg('user',esc(text));
+ setTimeout(function(){
+  var item=matchKB(text);
+  if(item){
+   var mini='SOURCE: '+esc(item.src)+' • EVIDENCE: '+esc(item.evtext)+' • ตรวจฐานความรู้ล่าสุด: 20 ก.ย. 2569 (20 SEP 2026)';
+   addMsg('bot',esc(item.a)+'<br><br><b style="color:var(--gold-2)">ชวนคิดต่อ:</b> '+esc(item.think),mini);
+  }else{
+   addMsg('bot',esc(NO_DATA),'หลักการ: ASK AI → CHECK EVIDENCE → THINK → THEN CONCLUDE');
+  }
+ },350);
+}
+document.getElementById('chatSend').addEventListener('click',function(){var el=document.getElementById('chatInput');ask(el.value);el.value='';});
+document.getElementById('chatInput').addEventListener('keydown',function(e){if(e.key==='Enter'){ask(this.value);this.value='';}});
+// suggests
+var sg=document.getElementById('suggests');
+['ทำไมจึงเรียกว่าดาบหัก?','อนุสาวรีย์อยู่ที่ไหน?','คุณค่าใดเชื่อมโยง?','AI ตอบได้ทุกเรื่องไหม?'].forEach(function(q){
+ var b=document.createElement('button');b.textContent=q;
+ b.addEventListener('click',function(){ask(q);});sg.appendChild(b);
+});
+addMsg('bot','สวัสดีครับ/ค่ะ ยินดีต้อนรับสู่ AI Hero Guide เส้นทางตามรอยพระยาพิชัยดาบหัก ถามมาได้เลยครับ/ค่ะ ผมจะตอบจากฐานความรู้ พร้อมระบุแหล่งอ้างอิงเสมอ อย่าลืมตรวจหลักฐานก่อนสรุปนะครับ/ค่ะ','เริ่มต้นได้ที่คำถามด้านล่าง');
+</script>
+<script>
+// ===== QUIZ ENGINE =====
+// หมวดหมู่การเรียนรู้ของแต่ละข้อ (ใช้มอบ Badge เพื่อสร้างแรงจูงใจ ไม่จัดอันดับ)
+var QCAT=['history','evidence','evidence','evidence','history','identity','evidence','evidence','identity','evidence'];
+var BADGES={
+ history:{en:'HISTORY EXPLORER',th:'นักสำรวจประวัติศาสตร์',ic:'📜',dsc:'คุณโดดเด่นเรื่องบุคคล เหตุการณ์ และช่วงเวลาทางประวัติศาสตร์'},
+ evidence:{en:'EVIDENCE DETECTIVE',th:'นักสืบหลักฐาน',ic:'🔍',dsc:'คุณเข้มแข็งเรื่องการตรวจสอบแหล่งข้อมูลและความน่าเชื่อถือ'},
+ identity:{en:'IDENTITY THINKER',th:'นักคิดอัตลักษณ์',ic:'🧩',dsc:'คุณเชื่อมโยงคุณค่าและอัตลักษณ์กับการเรียนรู้ได้อย่างลึกซึ้ง'}
+};
+var catTotal={history:0,evidence:0,identity:0};
+QCAT.forEach(function(c){catTotal[c]++;});
+var catCorrect={history:0,evidence:0,identity:0};
+var qIdx=0,qScore=0,qAnswered=false;
+var qBox=document.getElementById('quizBox');
+function renderQuiz(){
+ qAnswered=false;
+ var q=QUIZ[qIdx];
+ var pct=Math.round((qIdx)/QUIZ.length*100);
+ var h='<div class="q-progress"><i style="width:'+pct+'%"></i></div>';
+ h+='<div class="q-count">ข้อ '+(qIdx+1)+' / '+QUIZ.length+'</div>';
+ h+='<div class="q-text">'+esc(q.q)+'</div>';
+ h+='<div class="q-opts" id="qOpts"></div>';
+ h+='<div class="q-feedback" id="qFb"></div>';
+ h+='<div class="q-nav"><button id="qNext" disabled>ข้อถัดไป →</button></div>';
+ qBox.innerHTML=h;
+ var opts=document.getElementById('qOpts');
+ q.o.forEach(function(opt,j){
+  var b=document.createElement('button');
+  b.className='q-opt';b.textContent=String.fromCharCode(3585+[0,1,4,3][j])+'. '+opt;
+  b.textContent=['ก','ข','ค','ง'][j]+'. '+opt;
+  b.addEventListener('click',function(){pickAns(j,b);});
+  opts.appendChild(b);
+ });
+ document.getElementById('qNext').addEventListener('click',nextQuiz);
+}
+function pickAns(j,btn){
+ if(qAnswered)return;qAnswered=true;
+ var q=QUIZ[qIdx];
+ var all=document.querySelectorAll('.q-opt');
+ all.forEach(function(b,k){b.disabled=true;if(k===q.c)b.classList.add('correct');});
+ var fb=document.getElementById('qFb');
+ if(j===q.c){qScore++;catCorrect[QCAT[qIdx]]++;fb.style.color='var(--ok)';fb.innerHTML='✓ ถูกต้อง! '+esc(q.e);}
+ else{btn.classList.add('wrong');fb.style.color='var(--crimson)';fb.innerHTML='✗ คำตอบที่ถูกคือ “'+['ก','ข','ค','ง'][q.c]+'” — '+esc(q.e);}
+ document.getElementById('qNext').disabled=false;
+ document.querySelector('.q-progress i').style.width=Math.round((qIdx+1)/QUIZ.length*100)+'%';
+}
+function nextQuiz(){
+ if(qIdx<QUIZ.length-1){qIdx++;renderQuiz();}
+ else{showResult();}
+}
+function pickBadge(){
+ var order=['history','evidence','identity'];
+ var best=order[0],bestR=-1;
+ order.forEach(function(c){
+  var r=catTotal[c]?catCorrect[c]/catTotal[c]:0;
+  if(r>bestR){bestR=r;best=c;}
+ });
+ return BADGES[best];
+}
+function showResult(){
+ var msg,em;
+ var p=qScore/QUIZ.length;
+ if(p===1){msg='เยี่ยมมาก! คุณเข้าใจทั้งเนื้อหาและหลักการตรวจสอบหลักฐาน';em='🏆';}
+ else if(p>=0.7){msg='เก่งมาก! ลองทบทวนข้อที่พลาดเพื่อความเข้าใจที่แน่นขึ้น';em='🌟';}
+ else{msg='เริ่มต้นได้ดี! ลองกลับไปอ่านเมนูความรู้แล้วลองใหม่อีกครั้ง';em='📚';}
+ var bd=pickBadge();
+ qBox.innerHTML='<div class="q-result"><div style="font-size:2.4rem">'+em+'</div>'+
+  '<div class="q-count" style="margin-bottom:2px">HERO SCORE</div>'+
+  '<div class="score">'+qScore+' / 10</div>'+
+  '<h3>'+msg+'</h3>'+
+  '<div class="hero-badge">'+bd.ic+' BADGE: '+bd.en+'</div>'+
+  '<p style="font-family:\'Kanit\';color:var(--crimson);margin:12px 0 2px">“'+bd.th+'”</p>'+
+  '<p style="color:var(--slate);max-width:480px;margin:0 auto 14px">'+bd.dsc+'</p>'+
+  '<p style="font-size:.82rem;color:#8a7a4a;max-width:480px;margin:0 auto 18px">✧ Badge นี้มีไว้สร้างแรงจูงใจในการเรียนรู้ ไม่ได้จัดอันดับผู้เรียน • ความรู้ที่ดีมาจากการตรวจหลักฐานและคิดวิเคราะห์</p>'+
+  '<button class="btn-start" id="qRestart" style="font-size:.92rem;padding:11px 30px">ทำแบบทดสอบอีกครั้ง</button></div>';
+ document.getElementById('qRestart').addEventListener('click',function(){qIdx=0;qScore=0;catCorrect={history:0,evidence:0,identity:0};renderQuiz();});
+}
+renderQuiz();
+</script>
+</body>
+</html>
